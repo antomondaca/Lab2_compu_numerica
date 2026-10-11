@@ -1,7 +1,7 @@
 import numpy as np
 # Coloque todas las funciones como aparecen en la rubrica, pero si quieres dejar solo 5
 # entonces borra una y dime cual para el temita de los metodos :))))
-FUNCIONES = {
+Funciones = {
     "Polinomica_Simple": {
         "nombre": "f(x) = x³ - x - 2",
         "f": lambda x: x**3 - x - 2,
