@@ -1,5 +1,5 @@
 import numpy as np
-
+# a
 FUNCIONES = {
     "Polinomica_Simple": {
         "nombre": "f(x) = x³ - x - 2",
