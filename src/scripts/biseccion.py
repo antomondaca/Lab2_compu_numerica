@@ -2,10 +2,10 @@ def biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100):
     if f(limite_izq) * f(limite_der) >= 0: # Teorema de Bolzano
         return None, 0, [], False
     historial = [] # Almacena el historial de errores k-esimos para las graficas
-    c_ant = limite_izq # Valor referencial inciial para calcular el error absoluto
+    c_ant = limite_izq # Valor referencial inicial para calcular el error absoluto
 
     for k in range(1, max_iteraciones + 1):  
-        punto_medio = (limite_izq + limite_der) / 2 # Divvidimos el intervalo a la mitad osea, punto medio
+        punto_medio = (limite_izq + limite_der) / 2 # Dividimos el intervalo a la mitad osea, punto medio
         error = abs(punto_medio - c_ant) if k > 1 else abs(limite_der - limite_izq)  # Calculamos el error absoluto
         historial.append(error)
 
