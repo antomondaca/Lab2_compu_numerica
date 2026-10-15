@@ -30,5 +30,5 @@ def biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, r
             limite_izq = punto_medio # Si esta entre c y b, acotamos el intervalo por la izquierda, por lo tanto a = c
         c_ant = punto_medio # Se guarda el punto medio actual
         
-    return punto_medio, max_iteraciones, np.array(historial), False #Aca vamos a ocupar el np.array porque es mas facil de ocupar despues en el matplotlib
+    return punto_medio, max_iteraciones, np.array(historial), False # Aca vamos a ocupar el np.array porque es mas facil de ocupar despues en el matplotlib
         
