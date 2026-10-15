@@ -12,4 +12,9 @@ def punto_fijo():
         if np.isnan(valor_esti_actual) or np.isinf(valor_esti_actual): #Por si la funcion diverge
             print("La función g(x) no converge a un valor finito.")
             return None, i, historial, False
-    return 
+        
+        if error < tolerancia: # Criterio de parada
+            return valor_esti_actual, i, historial, True
+        valor_esti_actual = valor_esti_anterior
+
+    return valor_esti_actual, max_iteraciones, historial, False
