@@ -20,7 +20,7 @@ Funciones = {
         "f": lambda x: (x - 2) ** 2,
         "df": lambda x: 2 * (x - 2),
         "d2f": lambda x: 2,
-        "g": lambda x: x - 0.2 * ((x - 2) ** 2),
+        "g": lambda x: x + 0.2 * ((x - 2) ** 2),
         "a": 1,
         "b": 3,
         "x0": 1.2,
