@@ -102,6 +102,15 @@ def graficar_convergencia(clave, nombre_f, resultados_metodos):
 def graficar_resumen_iteraciones(resumen_i, categorias_f):
     plt.figure(figsize=(12, 6))
 
+    colores_pastel = {
+        "Biseccion": "#A0C4FF",
+        "Falsa Posicion": "#FFD6A5",
+        "Punto Fijo": "#CAFFBF",
+        "Secante": "#FFADAD",
+        "Newton-Raphson": "#BDB2FF",
+        "Newton-Raphson Mejorado": "#FFC6FF"
+    }
+
     nombres_metodos = list(resumen_i.keys()) # Obtenemos los nombres de los 6 metodos
     cant_metodos = len(nombres_metodos)
     x_indices = np.arange(len(categorias_f))
@@ -113,13 +122,18 @@ def graficar_resumen_iteraciones(resumen_i, categorias_f):
             x_indices - (0.4) + (idx * ancho_barra) + (ancho_barra / 2)
         )
         valores = resumen_i[metodo]
+        
+        # Le asignamos el color pastel correspondiente al metodo
+        color_elegido = colores_pastel.get(metodo, "#E2ECE9")
+
         plt.bar(
             posiciones,
             valores,
             width=ancho_barra,
             label=metodo,
-            edgecolor="black",
-            linewidth=0.5,
+            color=color_elegido, # Aca aplicamos el color pastel
+            edgecolor="#4A4E69", # Borde gris oscuro suave para que resalte sin verse tosco
+            linewidth=0.7,
         )
 
     plt.title(
@@ -128,7 +142,7 @@ def graficar_resumen_iteraciones(resumen_i, categorias_f):
     plt.xlabel("Funciones Evaluadas", fontsize=11)
     plt.ylabel("Cantidad de iteraciones hasta converger", fontsize=11)
     plt.xticks(x_indices, categorias_f, rotation=15, ha="right")
-    plt.grid(axis="y", linestyle=":", alpha=0.7)
+    plt.grid(axis="y", linestyle=":", alpha=0.5)
     plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")
 
     ruta_guardado = os.path.join(carpeta_assets, "resumen_iteraciones.png")
