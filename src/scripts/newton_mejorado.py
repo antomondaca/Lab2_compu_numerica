@@ -1,6 +1,6 @@
 import numpy as np
 
-def new_raphson(f, df, df2, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
+def newthon_mejorado(f, df, df2, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
     historial = []
     
     for i in range(1, max_iteraciones + 1):
