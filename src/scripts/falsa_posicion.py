@@ -14,7 +14,15 @@ def falsa_posicion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=ma
         punto_medio = (limite_izq * fb - limite_der * fa) / (fb - fa) # Formula de la falsa posicion
         fc = f(punto_medio)
 
-        # (falta calculo del error absoluto)
+        if raiz_exacta is not None: # Calculamos el error
+            error = np.abs(punto_medio - raiz_exacta)
+        else:
+            error = np.abs(punto_medio - c_ant)
+            if k > 1:
+                error = np.abs(punto_medio - c_ant)
+            else:
+                error = np.abs(limite_der - limite_izq)
+        historial.append(error)
 
         if np.abs(fc) < tolerancia or error < tolerancia: # Criterio de parada
             return punto_medio, k, np.array(historial), True # Retorna: raiz, iteraciones, errores, exito
