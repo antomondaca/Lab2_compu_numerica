@@ -48,3 +48,48 @@ def graficar_curva(clave, datos_f, raiz):
     ruta_guardado = os.path.join(carpeta_assets, f"curva_{clave}.png")
     plt.savefig(ruta_guardado, dpi=300, bbox_inches="tight")
     plt.close()
+
+    def graficar_convergencia(clave, nombre_f, resultados_metodos):
+        plt.figure(figsize=(9,6))
+
+        estilos = { # Le damos distintos estilos a cada metodo
+            "Biseccion": {"color": "tab:blue", "marker": "o"},
+            "Falsa Posicion": {"color": "tab:orange", "marker": "s"},
+            "Punto Fijo": {"color": "tab:green", "marker": "^"},
+            "Secante": {"color": "tab:red", "marker": "v"},
+            "Newton-Raphson": {"color": "tab:purple", "marker": "D"},
+            "Newton-Raphson Mejorado": {"color": "tab:brown", "marker": "P"},
+        }
+
+        grafico_vacio = True
+
+        for metodo, resultado in resultados_metodos.items(): # resultado cotiene: (raiz, iteraciones, historial, exito)
+            historial = resultado["historial"]
+            exito = resultado["exito"]
+
+            if exito and len(historial) > 0: # Solo graficamos si es que el metodo convergio al final y tiene un historial
+                grafico_vacio = False
+                iteraciones = np.arange(1, len(historial) + 1)
+                formato = estilos.get(metodo, {"color": "black", "marker": "x"})
+
+                plt.plot(
+                    iteraciones,
+                    historial,
+                    label=f"{metodo} ({len(historial)} iters)",
+                    color=formato["color"],
+                    marker=formato["marker"],
+                    linewidth=1.5,
+                    markersize=5,
+                )
+        
+        if not grafico_vacio:
+            ruta_guardado = os.path.join(
+                        carpeta_assets, f"convergencia_{clave}.png"
+                    )
+            plt.savefig(ruta_guardado, dpi=300, bbox_inches="tight")
+            pass
+
+        plt.close()
+
+    def graficar_resumen_iteraciones():
+        pass
