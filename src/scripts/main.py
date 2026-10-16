@@ -40,7 +40,7 @@ for clave, info in Funciones.items():
     aprox_antigua = info["x1"]
     fa = f(limite_izq)
     fb = f(limite_der)
-    t_bolzano = "Si" if fa * fb < 0 else "Raíz doble"
+    t_bolzano = "Si" if fa * fb < 0 else "No, Raíz doble"
     print(f"\nProcesando {clave} -> Intervalo: [{limite_izq}, {limite_der}], Bolzano: {t_bolzano}")
 
     x_curva = np.linspace(info["lims"][0], info["lims"][1], 150) # Archivo csv por función con columnas (x, f(x)) usando los limites de visualizacion
