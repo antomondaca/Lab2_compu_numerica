@@ -16,7 +16,7 @@ def punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_ex
         if raiz_exacta is not None: # Calculamos el error
             diferencia = np.abs(nueva_aprox - raiz_exacta)
         else:
-            diferencia = np.abd(nueva_aprox - aprox_actual)
+            diferencia = np.abs(nueva_aprox - aprox_actual)
 
         historial.append(diferencia)
 

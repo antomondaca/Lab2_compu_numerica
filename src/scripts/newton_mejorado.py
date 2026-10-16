@@ -8,11 +8,12 @@ def newton_raphson_modificado(f, df, df2, aprox_actual, tolerancia=1e-6, max_ite
         dy = df(aprox_actual)
         d2y = df2(aprox_actual) # Todo lo mismo del new_raphson pero esto es nuevo
 
-        if np.abs(dy) < 1e-14: # Caso en el que la derivada es 0 o casi 0
+        numerador = y * dy
+        denominador = (dy ** 2) - (y * d2y)
+
+        if np.abs(denominador) < 1e-14: # Caso en el que el denominador es 0 o casi 0
             return None, i, np.array(historial), False
 
-        numerador = y * dy
-        denominador = dy ** 2 - (y * d2y)
         nueva_aprox = aprox_actual - (numerador / denominador)
         y_nueva = f(nueva_aprox)
 
