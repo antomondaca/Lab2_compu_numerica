@@ -1,7 +1,7 @@
 import numpy as np
 
 def punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
-    historial = []
+    historial = [] # Almacena el historial de errores k-esimos para las graficas
 
     for i in range(1, max_iteraciones + 1): 
         try: # Tenemos que probar primero casos para que la aproximacion no se vaya al infinito o se indetermine, por eso ocupamos try
@@ -25,7 +25,7 @@ def punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_ex
         except Exception:
             y_nueva = np.inf
 
-        if np.abs(y_nueva) < tolerancia or diferencia < tolerancia:
+        if np.abs(y_nueva) < tolerancia or diferencia < tolerancia: # Criterio de parada
             return nueva_aprox, i, np.array(historial), True
 
         aprox_actual = nueva_aprox

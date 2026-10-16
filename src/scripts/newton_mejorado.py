@@ -1,7 +1,7 @@
 import numpy as np
 
 def newthon_mejorado(f, df, df2, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
-    historial = []
+    historial = [] # Almacena el historial de errores k-esimos para las graficas
     
     for i in range(1, max_iteraciones + 1):
         y = f(aprox_actual)

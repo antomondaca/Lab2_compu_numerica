@@ -3,7 +3,7 @@ import numpy as np
 def secante(f, aprox_antigua, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
     historial = []  # Almacena el historial de errores k-esimos para las graficas
 
-    y_antiguo = f(aprox_antigua) # Simplifica uso de funcion
+    y_antiguo = f(aprox_antigua) # Simplifica uso de funcion (aclaracion para mas adelante)
     y_actual = f(aprox_actual)
 
     for i in range (1, max_iteraciones + 1): 
