@@ -49,11 +49,49 @@ for clave, info in Funciones.items():
         writer.writerows(resultados)
     
     metodos = {
-    "Bisección": biseccion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
-    "Falsa Posición": falsa_posicion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
-    "Punto Fijo": punto_fijo(f, g, aprox_actual, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
-    "Newton Raphson": newton_raphson(f, df, aprox_actual, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
-    "Newton Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
-    "Secante": secante(f, aprox_antigua, aprox_actual, tolerancia=tol, max_iteraciones=max_i)
+    "Bisección": biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
+    "Falsa Posición": falsa_posicion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=200, raiz_exacta=None),
+    "Punto Fijo": punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
+    "Newton Raphson": newton_raphson(f, df, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
+    "Newton Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
+    "Secante": secante(f, aprox_antigua, aprox_actual, tolerancia=1e-6, max_iteraciones=100)
 }
+
+resultados_convergencia = {}
+raiz_encontrada = None
+
+for nom_metodo, (raiz, iteraciones, errores, vof) in metodos.items():
+    if len(errores) > 0:
+        errores_final = errores[-1]
+    else:
+        errores_final = None
+
+    if vof:
+        estado = "Convergió"
+    elif raiz is None:
+        estado = "No aplica" # Cuando no cumple con algun requerimiento de algun metodo
+    else:
+        estado = "Falló" # Falla cuando no llega a la tolerancia
+
+    if raiz is not None:
+        raiz_str = f"{raiz:.6f}" # Muestra la raiz con 6 decimales
+    else:
+        raiz_str = "N/A"
+
+    if errores_final is not None:
+        errores_str = f"{errores_final:.2e}" # Muestra con notacion cientifica 
+    else:
+        errores_str = "N/A"
+
+    resultados.append([clave, nom_metodo, raiz_str, iteraciones, errores_str, estado])
+
+    if vof: # Si el metodo tuvo exito, se guarda para graficar
+        if raiz_encontrada is None:
+            raiz_encontrada = raiz
+    
+    resultados_convergencia[nom_metodo] = {
+        "historial": errores,
+        "exito": vof
+    }
+
 

@@ -1,6 +1,6 @@
 import numpy as np
 
-def biseccion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None):
+def biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
     fa = f(limite_izq)
     fb = f(limite_der)
 
