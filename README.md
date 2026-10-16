@@ -23,15 +23,15 @@ Con estos metodos analizamos distintas funciones(polinómicas, logarítmicas, ex
 
 De acuerdo a la rúbrica solicitada, el proyecto se organiza de la siguiente manera:
 
-- scripts/ o src/: Contiene todos los scripts de Python con la implementación de los métodos y las funciones.
+- `scripts/` o `src/`: Contiene todos los scripts de Python con la implementación de los métodos y las funciones.
 
-- assets/: Carpeta donde se guardan los gráficos generados en formato PNG (funciones con sus raíces y gráficos de convergencia).
+- `assets/`: Carpeta donde se guardan los gráficos generados en formato PNG (funciones con sus raíces y gráficos de convergencia).
 
-- data/: Contiene los archivos CSV generados por cada función con los datos (x, f(x)) y el resumen de convergencia.
+- `data/`: Contiene los archivos CSV generados por cada función con los datos (x, f(x)) y el resumen de convergencia.
 
-- informe.md: Documento con las respuestas a las preguntas de convergencia y la conclusión argumentada.
+- `informe.md`: Documento con las respuestas a las preguntas de convergencia y la conclusión argumentada.
 
-- requirements.txt: Lista de dependencias necesarias (numpy, matplotlib).
+- `requirements.txt`: Lista de dependencias necesarias (numpy, matplotlib).
 
 ## Configuración del Entorno Virtual (venv)
 
