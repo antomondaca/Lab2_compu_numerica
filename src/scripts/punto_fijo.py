@@ -1,6 +1,6 @@
 import numpy as np
 
-def punto_fijo():
+def punto_fijo(g, valor_inicial, tolerancia=1e-6, max_iteraciones=100):
     historial = []
     valor_esti_anterior = valor_inicial 
 
@@ -15,6 +15,6 @@ def punto_fijo():
         
         if error < tolerancia: # Criterio de parada
             return valor_esti_actual, i, historial, True
-        valor_esti_actual = valor_esti_anterior
+        valor_esti_anterior = valor_esti_actual
 
     return valor_esti_actual, max_iteraciones, historial, False
