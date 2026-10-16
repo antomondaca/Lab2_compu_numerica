@@ -83,13 +83,54 @@ def graficar_curva(clave, datos_f, raiz):
                 )
         
         if not grafico_vacio:
+            plt.yscale("log") # Escala logaritmica tal como se pidio
+            plt.title(
+                f"Convergencia de Error vs Iteracion (Escala Log)\n{nombre_f}",
+                fontsize=12,
+            )
+            plt.xlabel("Numero de iteracion (k)", fontsize=10)
+            plt.ylabel("Error absoluto |x_k - x_(k-1)| (log)", fontsize=10)
+            plt.grid(True, which="both", linestyle=":", alpha=0.6)
+            plt.legend()
             ruta_guardado = os.path.join(
                         carpeta_assets, f"convergencia_{clave}.png"
                     )
             plt.savefig(ruta_guardado, dpi=300, bbox_inches="tight")
-            pass
 
         plt.close()
 
-    def graficar_resumen_iteraciones():
-        pass
+    def graficar_resumen_iteraciones(resumen_i, categorias_f):
+        plt.figure(figsize=(12, 6))
+
+        nombres_metodos = list(resumen_i.keys()) # Obtenemos los nombres de los 6 metodos
+        cant_metodos = len(nombres_metodos)
+        x_indices = np.arange(len(categorias_f))
+
+        ancho_barra = 0.8 / cant_metodos
+
+        for idx, metodo in enumerate(nombres_metodos): # Dibujamos una barra por cada metodo para comparar frente a frente
+            posiciones = (
+                x_indices - (0.4) + (idx * ancho_barra) + (ancho_barra / 2)
+            )
+            valores = resumen_i[metodo]
+            plt.bar(
+                posiciones,
+                valores,
+                width=ancho_barra,
+                label=metodo,
+                edgecolor="black",
+                linewidth=0.5,
+            )
+
+        plt.title(
+            "Comparativa General de Iteraciones por Metodo y Funcion", fontsize=14
+        )
+        plt.xlabel("Funciones Evaluadas", fontsize=11)
+        plt.ylabel("Cantidad de iteraciones hasta converger", fontsize=11)
+        plt.xticks(x_indices, categorias_f, rotation=15, ha="right")
+        plt.grid(axis="y", linestyle=":", alpha=0.7)
+        plt.legend(bbox_to_anchor=(1.02, 1), loc="upper left")
+
+        ruta_guardado = os.path.join(carpeta_assets, "resumen_iteraciones.png")
+        plt.savefig(ruta_guardado, dpi=300, bbox_inches="tight")
+        plt.close()        
