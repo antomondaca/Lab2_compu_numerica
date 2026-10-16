@@ -1,8 +1,7 @@
 # Repuestas a las preguntas
 
- - ¿Qué método convergió en menos iteraciones en cada función? ¿Por qué?
-
- - ¿Qué orden de convergencia tiene cada método y cómo se refleja en el gráfico |error| vs
+- ¿Qué método convergió en menos iteraciones en cada función? ¿Por qué?
+- ¿Qué orden de convergencia tiene cada método y cómo se refleja en el gráfico |error| vs
 iteración?
 - ¿Qué métodos requieren un intervalo con cambio de signo y cuáles no?
 - En la función que toca el eje x (raíz doble): ¿qué métodos fallan o no aplican y cuál se comporta
