@@ -12,7 +12,7 @@ def biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, r
 
     for k in range(1, max_iteraciones + 1):  
         punto_medio = (limite_izq + limite_der) / 2 # Dividimos el intervalo a la mitad osea, punto medio
-        fc = punto_medio
+        fc = f(punto_medio)
 
         if raiz_exacta is not None: # Calculamos el error absoluto
             error = np.abs(punto_medio - raiz_exacta)
@@ -22,13 +22,16 @@ def biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, r
         historial.append(error)
 
         if np.abs(fc) < tolerancia or error < tolerancia: # Criterio de parada
-            return punto_medio, k, historial, True # Retarna: raiz, iteraciones, erorres, exito
+            return punto_medio, k, np.array(historial), True # Retarna: raiz, iteraciones, erorres, exito
         
         if fa * fc < 0: # Reduccion de intervalo
             limite_der = punto_medio # Si esta entre a y c, acotamos el intervalo por la derecha, por lo tanto b = c
+            fb = fc
         else:
             limite_izq = punto_medio # Si esta entre c y b, acotamos el intervalo por la izquierda, por lo tanto a = c
+            fa = fc
+            
         c_ant = punto_medio # Se guarda el punto medio actual
         
-    return punto_medio, max_iteraciones, np.array(historial), False #Aca vamos a ocupar el np.array porque es mas facil de ocupar despues en el matplotlib
+    return punto_medio, max_iteraciones, np.array(historial), False # Aca vamos a ocupar el np.array porque es mas facil de ocupar despues en el matplotlib (aclaracion para mas adelante)
         

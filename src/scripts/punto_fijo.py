@@ -1,20 +1,33 @@
 import numpy as np
 
-def punto_fijo(g, valor_inicial, tolerancia=1e-6, max_iteraciones=100):
-    historial = []
-    valor_esti_anterior = valor_inicial 
+def punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
+    historial = [] # Almacena el historial de errores k-esimos para las graficas
 
-    for i in range(1, max_iteraciones + 1): #Evaluamos la funcion por si hay raices negativas
-        valor_esti_actual = g(valor_esti_anterior)
-        error = abs(valor_esti_actual - valor_esti_anterior)
-        historial.append(error)
+    for i in range(1, max_iteraciones + 1): 
+        try: # Tenemos que probar primero casos para que la aproximacion no se vaya al infinito o se indetermine, por eso ocupamos try
+            nueva_aprox = g(aprox_actual)
 
-        if np.isnan(valor_esti_actual) or np.isinf(valor_esti_actual): #Por si la funcion diverge
-            print("La función g(x) no converge a un valor finito.")
-            return None, i, historial, False
-        
-        if error < tolerancia: # Criterio de parada
-            return valor_esti_actual, i, historial, True
-        valor_esti_anterior = valor_esti_actual
+            if np.isnan(nueva_aprox) or np.isinf(nueva_aprox) or np.abs(nueva_aprox) > 1e10:
+                return None, i, np.array(historial), False
+            
+        except (OverflowError, ZeroDivisionError, ValueError): # Caso en el que una de las operaciones realizadas sea demasiado grande 
+            return None, i, np.array(historial), False
 
-    return valor_esti_actual, max_iteraciones, historial, False
+        if raiz_exacta is not None: # Calculamos el error
+            diferencia = np.abs(nueva_aprox - raiz_exacta)
+        else:
+            diferencia = np.abs(nueva_aprox - aprox_actual)
+
+        historial.append(diferencia)
+
+        try: # Testemaos el valor nuevo en la funcion y tenemos la precaucion si es que es muy grande
+            y_nueva = f(nueva_aprox)
+        except Exception:
+            y_nueva = np.inf
+
+        if np.abs(y_nueva) < tolerancia or diferencia < tolerancia: # Criterio de parada
+            return nueva_aprox, i, np.array(historial), True
+
+        aprox_actual = nueva_aprox
+
+    return nueva_aprox, max_iteraciones, np.array(historial), False
