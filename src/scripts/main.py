@@ -1,4 +1,5 @@
 import os
+import csv
 import numpy as np
 
 from biseccion import biseccion
@@ -30,9 +31,23 @@ for clave, info in Funciones.items():
     aprox_antigua = info["x1"]
     fa = f(limite_izq)
     fb = f(limite_der)
-    t_bolzano = "Si" if fa * fb < 0 else "No, tiene raíz doble"
+    t_bolzano = "Si" if fa * fb < 0 else "Raíz doble"
     print(f"Intervalo: [{limite_izq}, {limite_der}], f(a) = {fa}, f(b) = {fb}, Teorema de Bolzano: {t_bolzano}")
 
+    x = np.linspace(limite_izq, limite_der, 150) # Archivo csv por función con columnas (x,f(x))
+    y = f(x)
+    ruta_csv = os.path.join(carpeta_data, f"curva_{clave}.csv")
+    with open(ruta_csv, mode="w", newline="", encoding="utf-8") as archivo:
+        writer = csv.writer(archivo)
+        writer.writerow(["x", "f(x)"])
+        writer.writerows(zip(np.round(x, 5), np.round(y, 5)))
+
+    ruta_csv_resumen = os.path.join(carpeta_data, "resumen_convergencia.csv") # Archvio resumen de convergencias
+    with open(ruta_csv_resumen, mode="w", newline="", encoding="utf-8") as archivo:
+        writer = csv.writer(archivo)
+        writer.writerow(["Funcion", "Metodo", "Raiz", "Iteraciones", "Error_Final", "Estado"])
+        writer.writerows(resultados)
+    
     metodos = {
     "Bisección": biseccion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
     "Falsa Posición": falsa_posicion(f, limite_izq, limite_der, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
@@ -40,4 +55,5 @@ for clave, info in Funciones.items():
     "Newton Raphson": newton_raphson(f, df, aprox_actual, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
     "Newton Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tolerancia=tol, max_iteraciones=max_i, raiz_exacta=None),
     "Secante": secante(f, aprox_antigua, aprox_actual, tolerancia=tol, max_iteraciones=max_i)
-    }
+}
+
