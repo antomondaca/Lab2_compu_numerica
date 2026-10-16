@@ -1,6 +1,6 @@
 import numpy as np
 
-def new_raphson(f, df, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
+def newton_raphson(f, df, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None):
     historial = [] # Almacena el historial de errores k-esimos para las graficas
 
     for i in range(1, max_iteraciones + 1):
