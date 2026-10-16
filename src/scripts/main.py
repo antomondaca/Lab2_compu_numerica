@@ -49,12 +49,12 @@ for clave, info in Funciones.items():
         writer.writerows(resultados)
     
     metodos = {
-    "Bisección": biseccion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
-    "Falsa Posición": falsa_posicion(f, limite_izq, limite_der, tolerancia=1e-6, max_iteraciones=200, raiz_exacta=None),
-    "Punto Fijo": punto_fijo(f, g, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
-    "Newton Raphson": newton_raphson(f, df, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
-    "Newton Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tolerancia=1e-6, max_iteraciones=100, raiz_exacta=None),
-    "Secante": secante(f, aprox_antigua, aprox_actual, tolerancia=1e-6, max_iteraciones=100)
+    "Bisección": biseccion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=None),
+    "Falsa Posición": falsa_posicion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=None),
+    "Punto Fijo": punto_fijo(f, g, aprox_actual, tol, max_i, raiz_exacta=None),
+    "Secante": secante(f, aprox_antigua, aprox_actual, tol, max_i, raiz_exacta=None),
+    "Newton Raphson": newton_raphson(f, df, aprox_actual, tol, max_i, raiz_exacta=None),
+    "Newton Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tol, max_i, raiz_exacta=None)
 }
 
 resultados_convergencia = {}
