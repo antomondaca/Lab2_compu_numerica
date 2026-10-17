@@ -71,10 +71,11 @@ def graficar_convergencia(clave, nombre_f, resultados_metodos):
             grafico_vacio = False
             iteraciones = np.arange(1, len(historial) + 1)
             formato = estilos.get(metodo, {"color": "black", "marker": "x"})
+            historial_plot = np.maximum(historial, 1e-12) # Piso para que no desaparezca el punto cuando el error es 0 en escala log
 
             plt.plot(
                 iteraciones,
-                historial,
+                historial_plot,
                 label=f"{metodo} ({len(historial)} iters)",
                 color=formato["color"],
                 marker=formato["marker"],
@@ -89,7 +90,7 @@ def graficar_convergencia(clave, nombre_f, resultados_metodos):
             fontsize=12,
         )
         plt.xlabel("Numero de iteracion (k)", fontsize=10)
-        plt.ylabel("Error absoluto |x_k - x_(k-1)| (log)", fontsize=10)
+        plt.ylabel("Error absoluto |x_k - raiz| (log)", fontsize=10)
         plt.grid(True, which="both", linestyle=":", alpha=0.6)
         plt.legend()
         ruta_guardado = os.path.join(

@@ -13,6 +13,7 @@ Funciones = {
         "x1": 2,
         "lims": (0.5, 2.5),
         "es_doble": False,
+        "raiz": 1.5213797068045676,
     },
     "Polinomica_Doble": {
         "nombre": "f(x) = (x - 2)²",
@@ -26,6 +27,7 @@ Funciones = {
         "x1": 1.4,
         "lims": (0.5, 3.5),
         "es_doble": True,
+        "raiz": 2.0,
     },
     "Logaritmica": {
         "nombre": "f(x) = ln(x) + x - 4",
@@ -39,6 +41,7 @@ Funciones = {
         "x1": 3.0,
         "lims": (1.5, 3.5),
         "es_doble": False,
+        "raiz": 2.9262710624435009,
     },
     "Exponencial": {
         "nombre": "f(x) = e^(-x) - x",
@@ -52,6 +55,7 @@ Funciones = {
         "x1": 0.8,
         "lims": (-0.2, 1.5),
         "es_doble": False,
+        "raiz": 0.5671432904097838,
     },
     "Trigonometrica": {
         "nombre": "f(x) = cos(x) - x",
@@ -65,6 +69,7 @@ Funciones = {
         "x1": 0.8,
         "lims": (-0.2, 1.5),
         "es_doble": False,
+        "raiz": 0.7390851332151607,
     },
     "Mixta": {
         "nombre": "f(x) = √x - cos(x)",
@@ -78,5 +83,6 @@ Funciones = {
         "x1": 0.9,
         "lims": (0.05, 1.2),
         "es_doble": False,
+        "raiz": 0.6417143708728826,
     },
 }

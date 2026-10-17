@@ -52,12 +52,12 @@ for clave, info in Funciones.items():
         writer.writerows(zip(np.round(x_curva, 5), np.round(y_curva, 5)))
 
     metodos = { # Ejecucion de los 6 metodos
-        "Biseccion": biseccion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=None),
-        "Falsa Posicion": falsa_posicion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=None),
-        "Punto Fijo": punto_fijo(f, g, aprox_actual, tol, max_i, raiz_exacta=None),
-        "Secante": secante(f, aprox_antigua, aprox_actual, tol, max_i, raiz_exacta=None),
-        "Newton-Raphson": newton_raphson(f, df, aprox_actual, tol, max_i, raiz_exacta=None),
-        "Newton-Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tol, max_i, raiz_exacta=None)
+        "Biseccion": biseccion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=info["raiz"]),
+        "Falsa Posicion": falsa_posicion(f, limite_izq, limite_der, tol, max_i, raiz_exacta=info["raiz"]),
+        "Punto Fijo": punto_fijo(f, g, aprox_actual, tol, max_i, raiz_exacta=info["raiz"]),
+        "Secante": secante(f, aprox_antigua, aprox_actual, tol, max_i, raiz_exacta=info["raiz"]),
+        "Newton-Raphson": newton_raphson(f, df, aprox_actual, tol, max_i, raiz_exacta=info["raiz"]),
+        "Newton-Raphson Mejorado": newton_raphson_modificado(f, df, df2, aprox_actual, tol, max_i, raiz_exacta=info["raiz"])
     }
 
     resultados_convergencia = {}
